@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -7,12 +7,13 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState('')
 
   useEffect(() => {
-    fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
+    fetch('https://api.tvmaze.com/shows')
       .then(response => response.json())
       .then(data => {
-        console.log(data.results)
-        setShows(data.results)
-      }).catch(error => {
+        console.log(data)
+        setShows(data)
+      })
+      .catch(error => {
         console.log(error)
       })
   }, [])
@@ -29,17 +30,16 @@ const Home = () => {
       <div className='container'>
         <h1>ShowSearch</h1>
 
-        <form className='form-inline my-2 my-lg-0 w-75'>
+        <form className='form-inline my-2 my-lg-0 pb-4 w-75'>
           <input type='text' className='form-control' id='search' placeholder='Enter name' value={searchTerm} onChange={handleSearch} />
         </form>
-
         <div className='row'>
           {filteredShows.map(show => (
-            <div className='col-sm-4 mb-4' key={show.name}>
+            <div className='col-sm-4 mb-4' key={show.id}>
               <div className='card'>
-                <img className='card-img-top' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${show.url.split('/').slice(-2)[0]}.png`} alt={show.name} />
+                <img className='card-img-top' src={show.image.medium} alt={show.name} />
                 <div className='card-body'>
-                  <Link to={`/pokemon/${show.url.split('/').slice(-2)[0]}`}>
+                  <Link to={`/shows/${show.url.split('/').slice(-2)[0]}`}>
                     <h4 className='card-title'>{show.name}</h4>
                   </Link>
                 </div>

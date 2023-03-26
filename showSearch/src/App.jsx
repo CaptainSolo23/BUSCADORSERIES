@@ -2,7 +2,6 @@ import SearchBar from './components/Navbar'
 import './App.css'
 import { BrowserRouter } from 'react-router-dom'
 import RoutesIndex from './routes/Index'
-import Home from './pages/Home'
 
 function App () {
   return (
@@ -10,7 +9,6 @@ function App () {
 
       <BrowserRouter>
         <SearchBar />
-        <Home />
         <RoutesIndex />
       </BrowserRouter>
     </div>
