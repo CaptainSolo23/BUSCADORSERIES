@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 const showDetail = () => {
   const [show, setShow] = useState(null)
   const { id } = useParams()
+  const [cast, setCast] = useState([])
 
   useEffect(() => {
     fetch(`https://api.tvmaze.com/shows/${id}`)
@@ -18,7 +19,15 @@ const showDetail = () => {
   const imageElement = show?.image.medium
   const descElement = show?.summary
 
-  console.log(show)
+  useEffect(() => {
+    fetch(`https://api.tvmaze.com/shows/${id}/cast`)
+      .then(response => response.json())
+      .then(data => {
+        setCast(data)
+      }).catch(error => {
+        console.log(error)
+      })
+  }, [id])
 
   return (
     <div className='container mt-3 d-flex flex-column justify-content-center'>
@@ -38,6 +47,25 @@ const showDetail = () => {
               <>
                 <div dangerouslySetInnerHTML={{ __html: descElement }} />
               </>
+            </div>
+            <div className='cast-continer '>
+              <div className='col'>
+                <h3>Cast</h3>
+                <div className='row'>
+                  {cast.map(star => (
+                    <div className='col-sm-4 mb-4' key={star.person.id}>
+                      <div className='card'>
+                        <img className='card-img-top' src={star.character.image.medium} alt={star.name} />
+                        <div className='card-body'>
+                          <h4 className='card-title'>{star.person.name} as {star.character.name} </h4>
+
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+              </div>
             </div>
             <div className='col-md-8'>
               <h3>Episodes</h3>
