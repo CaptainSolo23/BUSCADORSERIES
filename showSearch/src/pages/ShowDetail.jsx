@@ -92,7 +92,9 @@ const showDetail = () => {
                         <>
                           <div dangerouslySetInnerHTML={{ __html: season.summary }} />
                         </>
-                        <div className='card-body' />
+                        <div className='button-chap'>
+                            <button className='see-chapters'>Ver capitulos</button> /**AQUI PONER LINK PARA PAGE CAPITULOS*/
+                        </div>
                       </div>
                     </div>
                   ))}
