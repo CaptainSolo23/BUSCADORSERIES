@@ -89,7 +89,7 @@ const showDetail = () => {
 
                     <div className='row d-flex flex-row mb-4'>
                       <div className='col'><h4>Season {season.number}</h4></div>
-                      <div className='col'><Link to={`/shows/${show.id}/episodes/${season.number}}`}><button className='btn btn-primary'> See episodes</button></Link></div>
+                      <div className='col'><Link to={`/shows/${show.id}/episodes/season/${season.number}}`}><button className='btn btn-primary'>See episodes</button></Link></div>
 
                     </div>
                     <div className='row-12 d-flex flex-row justify-content-between'>
