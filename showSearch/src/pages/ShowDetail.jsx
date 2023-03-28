@@ -5,6 +5,7 @@ const showDetail = () => {
   const [show, setShow] = useState(null)
   const { id } = useParams()
   const [cast, setCast] = useState([])
+  const [seasons, setSeasons] = useState([])
 
   useEffect(() => {
     fetch(`https://api.tvmaze.com/shows/${id}`)
@@ -24,6 +25,16 @@ const showDetail = () => {
       .then(response => response.json())
       .then(data => {
         setCast(data)
+      }).catch(error => {
+        console.log(error)
+      })
+  }, [id])
+
+  useEffect(() => {
+    fetch(`https://api.tvmaze.com/shows/${id}/seasons`)
+      .then(response => response.json())
+      .then(data => {
+        setSeasons(data)
       }).catch(error => {
         console.log(error)
       })
@@ -68,18 +79,25 @@ const showDetail = () => {
               </div>
             </div>
             <div className='col-md-8'>
-              <h3>Episodes</h3>
-              <table className='table'>
-                <thead>
-                  <tr>
-                    <th>Season</th>
-                    <th>Episode</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <></>
-                </tbody>
-              </table>
+
+              <h3>All seasons </h3>
+              <div className='col'>
+
+                <div className='season-container'>
+                  {seasons.map(season => (
+                    <div className='col-sm-4 mb-4' key={season.id}>
+                      <h4 className='card-title'>Season {season.number}</h4>
+                      <div className='col'>
+                        <img className='card-img-top' src={season.image.medium} alt={season.name} />
+                        <>
+                          <div dangerouslySetInnerHTML={{ __html: season.summary }} />
+                        </>
+                        <div className='card-body' />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
