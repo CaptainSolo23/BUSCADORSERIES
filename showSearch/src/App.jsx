@@ -1,4 +1,4 @@
-import SearchBar from './components/Navbar'
+import Navbar from './components/Navbar'
 import './App.css'
 import { BrowserRouter } from 'react-router-dom'
 import RoutesIndex from './routes/Index'
@@ -8,7 +8,7 @@ function App () {
     <div className='App'>
 
       <BrowserRouter>
-        <SearchBar />
+        <Navbar />
         <RoutesIndex />
       </BrowserRouter>
     </div>

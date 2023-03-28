@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import Home from '../pages/Home'
 import ShowDetail from '../pages/ShowDetail'
 
-const Index = () => {
+const RoutesIndex = () => {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
@@ -11,4 +11,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default RoutesIndex

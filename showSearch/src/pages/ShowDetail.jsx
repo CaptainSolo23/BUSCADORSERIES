@@ -1,8 +1,7 @@
-
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
 
-const ShowDetail = () => {
+const showDetail = () => {
   const [show, setShow] = useState(null)
   const { id } = useParams()
 
@@ -10,37 +9,43 @@ const ShowDetail = () => {
     fetch(`https://api.tvmaze.com/shows/${id}`)
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         setShow(data)
       }).catch(error => {
         console.log(error)
       })
   }, [id])
 
-  const imageMap = show?.image
-    ? {
-        original: show.image.original,
-        medium: show.image.medium
-      }
-    : null
+  const imageElement = show?.image.medium
+  const descElement = show?.summary
+
+  console.log(show)
 
   return (
-    <div className='container mt-3'>
-      <div className='card'>
+    <div className='container mt-3 d-flex flex-column justify-content-center'>
+      <div className='card d-flex justify-content-center'>
         <div className='card-header'>
           <h3>{show?.name}</h3>
         </div>
         <div className='card-body'>
           <div className='row'>
-            <div className='col-md-4'>
-              <img src={imageMap.medium} alt={show?.name} className='img-fluid' />
+            <div className='col-md-4 pb-3 d-flex justify-content-center'>
+              <img src={imageElement} alt={show?.name} className='img-fluid' />
+            </div>
+            <div className='col-md-8 pb-3'>
+              <h3>
+                Resume
+              </h3>
+              <>
+                <div dangerouslySetInnerHTML={{ __html: descElement }} />
+              </>
             </div>
             <div className='col-md-8'>
+              <h3>Episodes</h3>
               <table className='table'>
                 <thead>
                   <tr>
-                    <th>Stat</th>
-                    <th>Value</th>
+                    <th>Season</th>
+                    <th>Episode</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -54,4 +59,4 @@ const ShowDetail = () => {
     </div>
   )
 }
-export default ShowDetail
+export default showDetail

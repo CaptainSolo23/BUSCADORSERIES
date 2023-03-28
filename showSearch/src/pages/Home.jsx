@@ -30,7 +30,7 @@ const Home = () => {
       <div className='container'>
         <h1>ShowSearch</h1>
 
-        <form className='form-inline my-2 my-lg-0 pb-4 w-75'>
+        <form className='form-inline my-2 my-lg-0 pt-3 pb-3 w-75'>
           <input type='text' className='form-control' id='search' placeholder='Enter name' value={searchTerm} onChange={handleSearch} />
         </form>
         <div className='row'>
@@ -39,7 +39,7 @@ const Home = () => {
               <div className='card'>
                 <img className='card-img-top' src={show.image.medium} alt={show.name} />
                 <div className='card-body'>
-                  <Link to={`/shows/${show.url.split('/').slice(-2)[0]}`}>
+                  <Link to={`/shows/${show.id}`}>
                     <h4 className='card-title'>{show.name}</h4>
                   </Link>
                 </div>

@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom'
 
-const SearchBar = () => {
+const Navbar = () => {
   return (
 
-    <nav className='navbar navbar-expand-sm navbar-light bg-primary  d-flex justify-content-between px-4'>
+    <nav className='navbar navbar-expand-sm navbar-light bg-primary  d-flex justify-content-between px-4 mb-3'>
       <NavLink className='navbar-brand' to='#'>ShowSearch</NavLink>
 
       <ul className='navbar-nav mr-auto mt-2 mt-lg-0'>
@@ -20,4 +20,4 @@ const SearchBar = () => {
   )
 }
 
-export default SearchBar
+export default Navbar
