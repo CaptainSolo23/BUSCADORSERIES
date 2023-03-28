@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 const showDetail = () => {
   const [show, setShow] = useState(null)
@@ -66,7 +66,7 @@ const showDetail = () => {
                   {cast.map(star => (
                     <div className='col-sm-4 mb-4' key={star.person.id}>
                       <div className='card'>
-                        <img className='card-img-top' src={star.character.image.medium} alt={star.name} />
+                        <img className='card-img-top' src={star.person.image.medium} alt={star.name} />
                         <div className='card-body'>
                           <h4 className='card-title'>{star.person.name} as {star.character.name} </h4>
 
@@ -78,27 +78,34 @@ const showDetail = () => {
 
               </div>
             </div>
-            <div className='col-md-8'>
+            <div className='col'>
 
               <h3>All seasons </h3>
-              <div className='col'>
 
-                <div className='season-container'>
-                  {seasons.map(season => (
-                    <div className='col-sm-4 mb-4' key={season.id}>
-                      <h4 className='card-title'>Season {season.number}</h4>
-                      <div className='col'>
-                        <img className='card-img-top' src={season.image.medium} alt={season.name} />
-                        <>
-                          <div dangerouslySetInnerHTML={{ __html: season.summary }} />
-                        </>
-                        <div className='button-chap'>
-                            <button className='see-chapters'>Ver capitulos</button> /**AQUI PONER LINK PARA PAGE CAPITULOS*/
-                        </div>
-                      </div>
+              <div className='row-12 season-container'>
+                {seasons.map(season => (
+
+                  <div className='col mt-4' key={season.id}>
+
+                    <div className='row d-flex flex-row mb-4'>
+                      <div className='col'><h4>Season {season.number}</h4></div>
+                      <div className='col'><Link to={`/shows/${show.id}/episodes/${season.number}}`}><button className='btn btn-primary'> See episodes</button></Link></div>
+
                     </div>
-                  ))}
-                </div>
+                    <div className='row-12 d-flex flex-row justify-content-between'>
+
+                      <div className='col-6'>
+                        <img className='season' src={season.image.medium} alt={season.name} />
+                      </div>
+
+                      <div className='col-6'>
+                        <div dangerouslySetInnerHTML={{ __html: season.summary }} />
+                      </div>
+
+                    </div>
+                  </div>
+
+                ))}
               </div>
             </div>
           </div>
