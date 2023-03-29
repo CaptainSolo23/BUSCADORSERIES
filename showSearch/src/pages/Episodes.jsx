@@ -1,5 +1,5 @@
 
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 const Episodes = () => {
@@ -17,6 +17,10 @@ const Episodes = () => {
       })
   }, [seasonId])
 
+  const navigate = useNavigate()
+  const goBack = () => {
+    navigate(-1)
+  }
   return (
 
     <div className='container col-12 d-flex flex-column justify-content-center'>
@@ -28,7 +32,7 @@ const Episodes = () => {
               <div className='row'>
                 <img className='img' src={ep.image ? ep.image.medium : 'https://http.cat/404'} alt={ep.name} />
                 <div className='body'>
-                  <h4 className='title'>{ep.name}</h4>
+                  <h4 className='title pt-2 pb-2 bg-primary '>{ep.name}</h4>
                   <div dangerouslySetInnerHTML={{ __html: ep.summary }} />
                 </div>
               </div>
@@ -36,7 +40,7 @@ const Episodes = () => {
           ))}
         </div>
       </div>
-      <div className='button-return btn btn-secondary'>Back</div>
+      <div className='button-return btn btn-secondary' onClick={goBack}>Back</div>
     </div>
   )
 }
