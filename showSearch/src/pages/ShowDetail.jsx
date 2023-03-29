@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 
 const showDetail = () => {
   const [show, setShow] = useState(null)
@@ -40,6 +40,11 @@ const showDetail = () => {
       })
   }, [id])
 
+  const navigate = useNavigate()
+  const goBack = () => {
+    navigate(-1)
+  }
+
   return (
     <div className='container mt-3 d-flex flex-column justify-content-center'>
       <div className='card d-flex justify-content-center'>
@@ -61,14 +66,14 @@ const showDetail = () => {
             </div>
             <div className='cast-continer '>
               <div className='col'>
-                <h3>Cast</h3>
+                <h2>Cast</h2>
                 <div className='row'>
                   {cast.map(star => (
                     <div className='col-sm-4 mb-4' key={star.person.id}>
                       <div className='card'>
                         <img className='card-img-top' src={star.person.image.medium} alt={star.name} />
-                        <div className='card-body'>
-                          <h4 className='card-title bg-primary'>{star.person.name} as {star.character.name} </h4>
+                        <div className='card-body bg-primary'>
+                          <h4 className='card-title'>{star.person.name} as {star.character.name} </h4>
 
                         </div>
                       </div>
@@ -111,6 +116,7 @@ const showDetail = () => {
           </div>
         </div>
       </div>
+      <div className='button-return btn btn-secondary' onClick={goBack}>Back</div>
     </div>
   )
 }
