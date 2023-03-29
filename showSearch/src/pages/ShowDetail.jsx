@@ -68,7 +68,7 @@ const showDetail = () => {
                       <div className='card'>
                         <img className='card-img-top' src={star.person.image.medium} alt={star.name} />
                         <div className='card-body'>
-                          <h4 className='card-title'>{star.person.name} as {star.character.name} </h4>
+                          <h4 className='card-title bg-primary'>{star.person.name} as {star.character.name} </h4>
 
                         </div>
                       </div>
