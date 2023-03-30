@@ -32,7 +32,7 @@ const Episodes = () => {
               <div className='row'>
                 <img className='img' src={ep.image ? ep.image.medium : 'https://http.cat/404'} alt={ep.name} />
                 <div className='body'>
-                  <h4 className='title pt-2 pb-2 bg-primary '>{ep.name}</h4>
+                  <h4 className='title pt-2 pb-2 bg-primary px-2 text-white'>{ep.number}. {ep.name}</h4>
                   <div dangerouslySetInnerHTML={{ __html: ep.summary }} />
                 </div>
               </div>
@@ -40,7 +40,7 @@ const Episodes = () => {
           ))}
         </div>
       </div>
-      <div className='button-return btn btn-secondary' onClick={goBack}>Back</div>
+      <div className='button-return btn btn-secondary my-4' onClick={goBack}>Back</div>
     </div>
   )
 }
